@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Overtrue\Wechat\Server;
+use Overtrue\Wechat\Auth;
 
 use App\User;
 
@@ -43,9 +44,11 @@ EOT;
 	/**
 	 * 微信认证并跳转网页
 	 *
+	 * @param Overtrue\Wechat\Auth $auth
+	 *
 	 * @return App\Http\Requests
 	 */
-	public function redirect() {
+	public function redirect(Auth $auth) {
 
 		if (empty(session('logged_user'))) {
 			$authUser = $auth->authorize(null, 'snsapi_base'); 
