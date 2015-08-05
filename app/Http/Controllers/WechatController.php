@@ -50,14 +50,14 @@ EOT;
 	 */
 	public function redirect(Auth $auth) {
 
-		if (empty(session('logged_user'))) {
+		$authUser = session('logged_user');
+		if (empty($authUser)) {
 			$authUser = $auth->authorize(null, 'snsapi_base'); 
 			session(['logged_user' => $authUser]);
 		}
 
-		$user = User::where('openid', $authUser->openid);
-		dd($user->toArray());
-
+		$user = User::firstOrNew(['openid' => $authUser->openid]);
+		return $user->toArray();
 
 	}
 
