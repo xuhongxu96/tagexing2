@@ -50,15 +50,26 @@ EOT;
 	 */
 	public function redirect(Auth $auth) {
 
+		// Session中获取当前认证用户
 		$authUser = session('logged_user');
 		if (empty($authUser)) {
+			// 若Session为空，则进行微信认证
 			$authUser = $auth->authorize(null, 'snsapi_base'); 
+			// 保存Session
 			session(['logged_user' => $authUser]);
 		}
 
+		// 根据认证得到的用户openid获取用户信息，若不存在则实例化新用户
 		$user = User::firstOrNew(['openid' => $authUser->openid]);
-		return $user->toArray();
 
+		switch ($user->state) {
+		case 'register':
+			// 待注册
+			return redirect()->action('UserController@create', $user);
+			break;
+		}
+		
+		return 'Invalid Parameter';
 	}
 
 	/**

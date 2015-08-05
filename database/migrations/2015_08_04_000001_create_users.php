@@ -25,7 +25,7 @@ class CreateUsers extends Migration
 			$table->string('qq', 300)->nullable(); // QQ Number (Optional)
 
 			// User Profile
-			$table->enum('state', array('registered', 'normal', 'rented', 'disabled'))->default('registered'); // User State
+			$table->enum('state', array('register', 'normal', 'rented', 'disabled'))->default('register'); // User State
 			$table->dateTime('free_at'); // Time When Disabled User Should Be Free
 			$table->integer('score')->default(60);  // Score
 			$table->integer('total')->default(0);  // Total Duration
