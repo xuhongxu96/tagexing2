@@ -59,7 +59,7 @@ EOT;
 		case 'register':
 		default:
 			// 待注册
-			return redirect()->action('UserController@create');
+			return redirect()->action('UsersController@create');
 			break;
 		}
 		
