@@ -3,3 +3,4 @@
 Homestead.yaml
 /bootstrap/compiled.php
 .env
+*.swp
