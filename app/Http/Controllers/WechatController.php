@@ -20,6 +20,10 @@ class WechatController extends Controller
 	 * @return string
 	 */
 	public function serve(Server $server) {
+
+		$server->on('event', 'subscribe', function ($event) {
+		});
+
 		$server->on('message', function ($message) {
 			return "Hello, World!";
 		});
