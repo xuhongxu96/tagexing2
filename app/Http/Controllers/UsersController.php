@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 
-class UserController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,6 +23,8 @@ class UserController extends Controller
 
     /**
      * Show the form for creating a new resource.
+	 *
+	 * @param App\User $user 由AppServiceProvider自动进行微信认证获取当前用户信息
      *
      * @return Response
      */

@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use Overtrue\Wechat\Auth;
+use App\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-		$this->app->singleton('App\User', function($app) {
+		$this->app->singleton('\App\User', function($app) {
 			// Session中获取当前认证用户
 			$authUser = session('logged_user');
 			if (empty($authUser)) {

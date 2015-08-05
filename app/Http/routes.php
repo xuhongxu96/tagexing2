@@ -19,4 +19,4 @@ Route::any('/wechat', 'WechatController@serve');
 
 Route::any('/wechat/redirect', 'WechatController@redirect');
 
-Route::get('/register', 'UserController@create');
+Route::get('/register', 'UsersController@create');
