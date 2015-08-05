@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>踏鸽行 2.0 马上归来！</title>
+        <title>Laravel</title>
 
         <style>
             html, body {
@@ -12,10 +12,8 @@
                 margin: 0;
                 padding: 0;
                 width: 100%;
-                color: #B0BEC5;
                 display: table;
                 font-weight: 100;
-                font-family: 'Lato';
             }
 
             .container {
@@ -37,7 +35,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">踏鸽行 2.0 马上归来！</div>
+                <div class="title">Laravel 5</div>
             </div>
         </div>
     </body>
