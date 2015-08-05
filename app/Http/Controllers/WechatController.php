@@ -63,7 +63,14 @@ EOT;
 		$user = User::firstOrNew(['openid' => $authUser->openid]);
 
 		switch ($user->state) {
+		case 'normal':
+			break;
+		case 'rented':
+			break;
+		case 'disabled':
+			break;
 		case 'register':
+		default:
 			// 待注册
 			return redirect()->action('UserController@create', $user);
 			break;
