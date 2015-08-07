@@ -15,8 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// 相应微信请求
 Route::any('/wechat', 'WechatController@serve');
 
+// 微信网页入口
 Route::any('/wechat/redirect', 'WechatController@redirect');
 
-Route::get('/register', 'UsersController@create');
+// 用户认证注册入口
+Route::get('register', 'RegisterController@index');
+Route::get('register/details', 'RegisterController@details');
+
+// 统一身份认证
+Route::post('/auth', 'AuthController@auth');
+// - 北京师范大学
+Route::any('/auth/bnu', 'AuthController@bnu');
+
+// 用户
+Route::resource('users', 'UsersController');

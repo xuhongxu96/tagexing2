@@ -11,6 +11,19 @@ use App\User;
 
 class UsersController extends Controller
 {
+
+	protected $user;
+
+	/**
+	 * Constructor
+	 *
+	 * @param App\User $user
+	 */
+	public function __construct(User $user)
+	{
+		$this->user = $user;
+	}
+
     /**
      * Display a listing of the resource.
      *
@@ -22,17 +35,13 @@ class UsersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-	 *
-	 * @param App\User $user 由AppServiceProvider自动进行微信认证获取当前用户信息
+     * 显示创建用户的表单
      *
      * @return Response
      */
-    public function create(User $user)
+    public function create()
     {
-        //
-		return $user->toArray();
-		
+		return view('users.create')->withUser($this->user);
     }
 
     /**
@@ -58,14 +67,14 @@ class UsersController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 显示编辑用户的表单
      *
      * @param  int  $id
      * @return Response
      */
     public function edit($id)
     {
-        //
+		return view('users.edit')->withUser(User::find($id));
     }
 
     /**

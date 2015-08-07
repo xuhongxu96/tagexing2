@@ -1,0 +1,16 @@
+
+/*小诗*/
+.poem {
+	padding: 12px 24px;
+	margin-top: 36px;
+	margin-bottom: 24px;
+
+	border-top-left-radius: 32px;
+	border-bottom-right-radius: 32px;
+	box-shadow: 0 0 6px #ccc;
+	display: inline-block;
+
+	text-shadow: 0 0 4px #fff;
+	font-size: 0.9em;
+	font-style: italic;
+}

@@ -10,9 +10,22 @@ use App\Http\Controllers\Controller;
 use Overtrue\Wechat\Server;
 
 use App\User;
+use Auth;
 
 class WechatController extends Controller
 {
+
+	protected $user;
+
+	/**
+	 * Constructor
+	 *
+	 * @param App\User $user
+	 */
+	public function __construct(User $user)
+	{
+		$this->user = $user;
+	}
 
 	/**
 	 * 响应微信请求
@@ -21,10 +34,11 @@ class WechatController extends Controller
 	 *
 	 * @return string
 	 */
-	public function serve(Server $server) {
+	public function serve(Server $server) 
+	{
 
 		$server->on('event', 'subscribe', function ($event) {
-			$url = action('WechatController@redirect');
+			$url = action('WechatController@auth');
 			return <<<EOT
 欢迎来到imall公益电商平台 和 踏鸽行公共自行车服务平台！
 
@@ -43,13 +57,11 @@ EOT;
 	/**
 	 * 微信认证并跳转网页
 	 *
-	 * @param App\User $user 由AppServiceProvider自动进行微信认证获取当前用户信息
-	 *
 	 * @return App\Http\Requests
 	 */
-	public function redirect(User $user) {
-
-		switch ($user->state) {
+	public function redirect() 
+	{
+		switch ($this->user->state) {
 		case 'normal':
 			break;
 		case 'rented':
@@ -65,7 +77,6 @@ EOT;
 		
 		return 'Invalid Parameter';
 	}
-
 	/**
 	 * Index Page for Wechat
 	 *

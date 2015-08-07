@@ -11,16 +11,22 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-	 * 实现关键步骤自动注入当前认证的用户信息
      *
      * @return void
      */
     public function register()
     {
-        //
-		$this->app->singleton('\App\User', function($app) {
+
+		$this->app->singleton('App\User', function ($app) {
 			// Session中获取当前认证用户
 			$authUser = session('logged_user');
+
+			if (app()->environment('debug')) {
+				$authUser = (object)array(
+					'openid' => 'Hello, World!'
+				);
+			}
+
 			if (empty($authUser)) {
 				// 获取微信认证接口
 				$auth =\App::make('Overtrue\Wechat\Auth');
