@@ -25,6 +25,7 @@ class User extends Model implements AuthenticatableContract
 		'auth',
 		'school',
 		'student_id',
+		'student_type',
 		'department',
 	];
 }

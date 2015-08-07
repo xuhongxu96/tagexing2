@@ -1,4 +1,6 @@
-
+body {
+	padding-bottom: 8px;
+}
 /*小诗*/
 .poem {
 	padding: 12px 24px;

@@ -7,7 +7,7 @@
 	<div class="container">
 		
 		<div role="main" class="ui-content">
-			{!! Form::open(['action' => 'UsersController@store', 'method' => 'POST', 'class' => '']) !!}
+			{!! Form::open(['action' => 'UsersController@store', 'method' => 'POST']) !!}
 @include ('users.form')
 			{!! Form::close() !!}
 		</div><!-- /content -->
