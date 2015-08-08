@@ -63,13 +63,15 @@ EOT;
 	{
 		switch ($this->user->state) {
 		case 'normal':
+			return redirect()->action('UsersController@show', ['id' => $this->user->id]);
 			break;
 		case 'rented':
 			break;
 		case 'disabled':
 			break;
 		case 'register':
-		default:
+		case 'auth':
+		case null:
 			// 待注册
 			return redirect()->action('RegisterController@index');
 			break;

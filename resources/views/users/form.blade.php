@@ -18,13 +18,17 @@
 @else
 	<div class="form-group">
 @endif
-		<fieldset class="{{ $user->gender ? $readonly : "" }}"> 
+		<fieldset> 
 			<label class="control-label">您是<span class="text-danger">（必填）</span>：</label>
-			{!! Form::radio('gender', 'male', $user->gender == 'male', ['class' => 'hidden', 'id' => 'gender-male']) !!}
-			{!! Form::radio('gender', 'female', $user->gender == 'female', ['class' => 'hidden', 'id' => 'gender-female']) !!}
-			<div class="btn-group" role="group">
-				{!! Form::label('gender-male', '帅哥', ['class' => 'btn btn-default label-gender ' . ($user->gender ? $readonly : "")]) !!}
-				{!! Form::label('gender-female', '美女', ['class' => 'btn btn-default label-gender ' . ($user->gender ? $readonly : "")]) !!}
+			<div class="btn-group" role="group" data-toggle="buttons">
+				<label class="btn btn-primary {{ $user->gender == 'male' ? 'active' : '' }} {{ $user->gender && $readonly ? 'disabled' : '' }}" for="gender-male">
+					{!! Form::radio('gender', 'male', $user->gender == 'male', ['class' => 'hidden', 'id' => 'gender-male']) !!}
+					帅哥
+				</label>
+				<label class="btn btn-primary {{ $user->gender == 'female' ? 'active' : '' }} {{ $user->gender && $readonly ? 'disabled' : '' }}" for="gender-female">
+					{!! Form::radio('gender', 'female', $user->gender == 'female', ['class' => 'hidden', 'id' => 'gender-female']) !!}
+					美女
+				</label>
 			</div>
 		</fieldset>
 @if ($errors->has('gender'))
@@ -129,3 +133,4 @@
 	</div>
 
 	{!! Form::submit('确认信息', ['class' => 'btn btn-primary btn-lg btn-block']) !!}
+

@@ -32,7 +32,7 @@ class UserRequest extends Request
 			'mobile' => 'required|digits:11',
 			'qq' => 'numeric',
 			'school' => 'required|max:100',
-			'student_id' => 'required|max:100',
+			'student_id' => 'required|digitsbetween:1,100',
 			'student_type' => 'required|max:300',
 			'department' => 'max:300',
         ];

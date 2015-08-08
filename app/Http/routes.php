@@ -23,7 +23,6 @@ Route::any('/wechat/redirect', 'WechatController@redirect');
 
 // 用户认证注册入口
 Route::get('register', 'RegisterController@index');
-Route::get('register/details', 'RegisterController@details');
 
 // 统一身份认证
 Route::post('/auth', 'AuthController@auth');

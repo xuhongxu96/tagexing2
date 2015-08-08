@@ -19,7 +19,7 @@
 					{!! Form::label('school', '请选择您的学校：') !!}
 					{!! Form::select('school', [ '北京师范大学' => '北京师范大学', ], '北京师范大学', ['class' => 'form-control']) !!}
 				</div>
-				<a href="{{ action('RegisterController@details') }}">没有您的学校？点此注册！</a>
+				<a href="{{ action('UsersController@create') }}">没有您的学校？点此注册！</a>
 				<br>
 				<br>
 				{!! Form::submit('立刻加入！', ['class' => 'btn btn-primary btn-lg btn-block']) !!}

@@ -37,20 +37,6 @@ class RegisterController extends Controller
 			// 显示初始注册页面
 			return view('register.index');
 		}
-		return redirect()->action('RegisterController@details');
-    }
-
-    /**
-     * 填写注册用户详细信息
-	 *
-     * @return Response
-     */
-    public function details()
-    {
-		if (empty($this->user->student_id))
-		{
-			return redirect()->action("UsersController@create");
-		}
 		return redirect()->action("UsersController@edit", ['id' => $this->user->id]);
     }
 }

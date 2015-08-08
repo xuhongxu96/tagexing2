@@ -9,6 +9,11 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 class User extends Model implements AuthenticatableContract
 {
     use Authenticatable;
+
+	protected $dates = [
+		'free_at',
+	];
+
     //
 	protected $fillable = [
 		'openid',

@@ -19,6 +19,9 @@
     <![endif]-->
 
     <link href="{{ asset('main/main.css') }}" rel="stylesheet">
+	<style>
+		@yield('style')
+	</style>
 </head>
 
 <body>
@@ -34,6 +37,7 @@
                 </button>
                 <a class="pull-left btn btn-default navbar-btn visible-xs-block" href="javascript:history.go(-1);">返回</a>
                 <a class="navbar-brand" href="{{ url('/') }}">踏鸽行</a>
+				<p class="navbar-text">@yield('title')</p>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
