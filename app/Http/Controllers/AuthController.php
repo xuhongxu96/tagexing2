@@ -86,7 +86,7 @@ class AuthController extends Controller
 				$this->user->student_type = $successnode->attributes->TYPE_NAME;
 				$this->user->state = 'auth';
 				$this->user->save();
-				return redirect()->action("RegisterController@details");
+				return redirect()->action("UsersController@edit", ['id' => $this->user->id]);
 				
 			}else{
 				//重定向浏览器 
