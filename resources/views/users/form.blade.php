@@ -18,19 +18,25 @@
 @else
 	<div class="form-group">
 @endif
+@if ($user->gender && $readonly )
+		<label class="control-label">您是<span class="text-danger">（必填）</span>：{{ $user->gender == 'male' ? '帅哥' : '美女'}} </label>
+		{!! Form::input('hidden', 'gender', null) !!}
+@else
 		<fieldset> 
 			<label class="control-label">您是<span class="text-danger">（必填）</span>：</label>
 			<div class="btn-group" role="group" data-toggle="buttons">
-				<label class="btn btn-primary {{ $user->gender == 'male' ? 'active' : '' }} {{ $user->gender && $readonly ? 'disabled' : '' }}" for="gender-male">
+				<label class="btn btn-primary {{ $user->gender == 'male' ? 'active' : '' }}" for="gender-male">
 					{!! Form::radio('gender', 'male', $user->gender == 'male', ['class' => 'hidden', 'id' => 'gender-male']) !!}
 					帅哥
 				</label>
-				<label class="btn btn-primary {{ $user->gender == 'female' ? 'active' : '' }} {{ $user->gender && $readonly ? 'disabled' : '' }}" for="gender-female">
+				<label class="btn btn-primary {{ $user->gender == 'female' ? 'active' : '' }}" for="gender-female">
 					{!! Form::radio('gender', 'female', $user->gender == 'female', ['class' => 'hidden', 'id' => 'gender-female']) !!}
 					美女
 				</label>
 			</div>
 		</fieldset>
+@endif
+
 @if ($errors->has('gender'))
 		<span class="help-block">{{ $errors->first('gender') }}</span>
 @endif

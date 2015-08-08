@@ -20,6 +20,7 @@ Route::any('/wechat', 'WechatController@serve');
 
 // 微信网页入口
 Route::any('/wechat/redirect', 'WechatController@redirect');
+Route::get('/wechat/profile', 'WechatController@profile');
 
 // 用户认证注册入口
 Route::get('register', 'RegisterController@index');

@@ -15,3 +15,26 @@ body {
 	text-shadow: 0 0 4px #fff;
 	font-style: italic;
 }
+a.list-group-item {
+	position: relative;
+}
+
+a.list-group-item:after {
+	position: absolute;
+	content: "\e080";
+	float: right;
+	top: 50%;
+	right: 8px;
+	height: 100%;
+	margin-top: -10px;
+	display: inline-block;
+
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 1;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

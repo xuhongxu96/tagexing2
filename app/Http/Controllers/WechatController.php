@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Overtrue\Wechat\Server;
 
 use App\User;
-use Auth;
+use Cache;
 
 class WechatController extends Controller
 {
@@ -63,7 +63,7 @@ EOT;
 	{
 		switch ($this->user->state) {
 		case 'normal':
-			return redirect()->action('UsersController@show', ['id' => $this->user->id]);
+			return redirect()->action('WechatController@profile');
 			break;
 		case 'rented':
 			break;
@@ -80,10 +80,39 @@ EOT;
 		return 'Invalid Parameter';
 	}
 	/**
-	 * Index Page for Wechat
+	 * 个人信息
 	 *
 	 * @return View
 	 */
-	public function index() {
+	public function profile() {
+		// 查看个人信息
+		$response = view('index.profile')->withUser($this->user);
+		// 获取系统公告
+		Cache::forever('tip', [
+			'type' => 'info',
+			'message' => '踏鸽行 2.0 正在研发中……',
+		]);
+		// 系统公告每个会话提示3次
+		$tipShown = session('tip_shown', 0);
+		if ($tipShown < 3)
+		{
+			session(['tip_shown' => $tipShown + 1]);
+			$response->withTip(Cache::get('tip'));
+		}
+		// 随机昵称
+		$nick = ['童鞋', '小盆友', '小伙伴', '小公举'];
+		if ($this->user->gender == 'male')
+			$nick = array_merge($nick, ['小帅哥', '大哥哥', '汉纸']);
+		else
+			$nick = array_merge($nick, ['小公主', '大美女', '女神']);
+		if (preg_match('/(信息|计算机|软件)/', $this->user->department))
+		{
+			$nick = array_merge($nick, ['程序猿', '工程狮']);
+			if ($this->user->gender == 'male')
+				$nick = array_merge($nick, ['好男人']);
+			else
+				$nick = array_merge($nick, ['程序媛']);
+		}
+		return $response->withNick($nick[rand(0, count($nick) - 1)]);
 	}
 }

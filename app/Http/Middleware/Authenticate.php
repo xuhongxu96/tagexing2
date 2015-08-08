@@ -3,16 +3,16 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
+use App\User;
 
 class Authenticate
 {
     /**
-     * The Guard implementation.
+     * User
      *
-     * @var Guard
+     * @var User
      */
-    protected $auth;
+    protected $user;
 
     /**
      * Create a new filter instance.
@@ -20,9 +20,9 @@ class Authenticate
      * @param  Guard  $auth
      * @return void
      */
-    public function __construct(Guard $auth)
+    public function __construct(User $user)
     {
-        $this->auth = $auth;
+        $this->user = $user;
     }
 
     /**
@@ -34,12 +34,11 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->guest()) {
-            if ($request->ajax()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('auth/login');
-            }
+		// 判断权限
+		// TODO: 加入管理员判断
+		$id = $request->route('users');
+        if (($id && $this->user->id != $id) && $this->user->auth != 'admin') {
+			return response(view('errors.error', ['title' => '权限不足', 'error' => '您的权限不足以编辑该用户的信息！']), 403);
         }
 
         return $next($request);
