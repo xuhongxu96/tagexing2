@@ -28,6 +28,12 @@ body {
 	text-shadow: 0 0 4px #fff;
 	font-style: italic;
 }
+.btn-primary:visited {
+	color: white;
+}
+.btn-default:visited {
+	color: black;
+}
 a.list-group-item {
 	position: relative;
 }
