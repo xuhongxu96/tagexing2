@@ -41,7 +41,7 @@ class WechatController extends Controller
 	{
 
 		$server->on('event', 'subscribe', function ($event) {
-			$url = action('WechatController@auth');
+			$url = action('WechatController@redirect');
 			return <<<EOT
 欢迎来到imall公益电商平台 和 踏鸽行公共自行车服务平台！
 
@@ -51,7 +51,13 @@ EOT;
 		});
 
 		$server->on('message', function ($message) {
-			return "Hello, World!";
+			$url = action('WechatController@auth');
+			return <<<EOT
+欢迎来到imall公益电商平台 和 踏鸽行公共自行车服务平台！
+
+<a href="http://imall365.org">点此开始imall公益电商之旅！</a>
+<a href="$url">点此开始踏鸽行！</a>
+EOT;
 		});
 
 		return $server->serve();

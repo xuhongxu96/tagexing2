@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#curtain').fadeOut(500);
+	$('#curtain').slideUp(800);
 	$(window).bind('beforeunload', function() {
 		$('#curtain').fadeIn(500);
 	});
