@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	$('#curtain').fadeOut(300);
+	$('#curtain').fadeOut(500);
 	$(window).bind('beforeunload', function() {
-		$('#curtain').fadeIn(100);
+		$('#curtain').fadeIn(500);
 	});
 
 	$('.filter').each(function() {
