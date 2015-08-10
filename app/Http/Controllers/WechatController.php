@@ -10,7 +10,10 @@ use App\Http\Controllers\Controller;
 use Overtrue\Wechat\Server;
 
 use App\User;
+use App\Rank;
+use App\Stop;
 use Cache;
+use DB;
 
 class WechatController extends Controller
 {
@@ -113,6 +116,11 @@ EOT;
 			else
 				$nick = array_merge($nick, ['程序媛']);
 		}
-		return $response->withNick($nick[rand(0, count($nick) - 1)]);
+
+		$response->withStops(Stop::with('bikes')->get()->sortBy(function($stop){
+			return $stop->bikes->count();
+		}, null, true));
+		return $response->withNick($nick[rand(0, count($nick) - 1)])
+						->withRank(Rank::fromScore($this->user->score)->first());
 	}
 }
