@@ -12,4 +12,4 @@
 	<a class="btn btn-danger" href="{{ action('WechatController@redirect') }}">返回首页</a>
 </div>
 
-@endsection
+@stop

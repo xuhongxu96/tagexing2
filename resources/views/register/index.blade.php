@@ -26,4 +26,4 @@
 			{!! Form::close() !!}
 		</div><!-- /content -->
 
-@endsection
+@stop

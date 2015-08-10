@@ -32,3 +32,6 @@ Route::any('/auth/bnu', 'AuthController@bnu');
 
 // 用户
 Route::resource('users', 'UsersController');
+
+// 借车
+Route::controller('rent', 'RentController');

@@ -88,6 +88,10 @@ EOT;
 	 * @return View
 	 */
 	public function profile() {
+		if (empty($this->user->state)) 
+		{
+			return redirect()->action('WechatController@redirect');
+		}
 		// 查看个人信息
 		$response = view('index.profile')->withUser($this->user);
 		// 获取系统公告
@@ -104,23 +108,29 @@ EOT;
 		}
 		// 随机昵称
 		$nick = ['童鞋', '小盆友', '小伙伴', '小公举'];
-		if ($this->user->gender == 'male')
-			$nick = array_merge($nick, ['小帅哥', '大哥哥', '汉纸']);
-		else
-			$nick = array_merge($nick, ['小公主', '大美女', '女神']);
-		if (preg_match('/(信息|计算机|软件)/', $this->user->department))
+
+		if (in_array($this->user->state, ['normal', 'rented', 'disabled'])) 
 		{
-			$nick = array_merge($nick, ['程序猿', '工程狮']);
 			if ($this->user->gender == 'male')
-				$nick = array_merge($nick, ['好男人']);
+				$nick = array_merge($nick, ['小帅哥', '大哥哥', '汉纸']);
 			else
-				$nick = array_merge($nick, ['程序媛']);
+				$nick = array_merge($nick, ['小公主', '大美女', '女神']);
+			if (preg_match('/(信息|计算机|软件)/', $this->user->department))
+			{
+				$nick = array_merge($nick, ['程序猿', '工程狮']);
+				if ($this->user->gender == 'male')
+					$nick = array_merge($nick, ['好男人']);
+				else
+					$nick = array_merge($nick, ['程序媛']);
+			}
+
+			$response->withRank(Rank::fromScore($this->user->score)->first());
 		}
 
-		$response->withStops(Stop::with('bikes')->get()->sortBy(function($stop){
-			return $stop->bikes->count();
-		}, null, true));
+
 		return $response->withNick($nick[rand(0, count($nick) - 1)])
-						->withRank(Rank::fromScore($this->user->score)->first());
+						->withStops(Stop::with('bikes')->get()->sortBy(function($stop){
+							return $stop->bikes->count();
+						}, null, true));
 	}
 }

@@ -25,6 +25,7 @@
 </head>
 
 <body>
+	<div id="curtain">Loading...</div>
     <nav class="navbar navbar-default">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,8 +36,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="pull-left btn btn-default navbar-btn visible-xs-block" href="javascript:history.go(-1);">返回</a>
-                <a class="navbar-brand" href="{{ url('/') }}">踏鸽行</a>
+				<a class="pull-left btn btn-default navbar-btn visible-xs-block" href="javascript:history.go(-1);" aria-label="back">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					返回
+				</a>
+                <a class="navbar-brand" href="{{ url('wechat/redirect') }}">踏鸽行</a>
 				<p class="navbar-text">@yield('title')</p>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -60,6 +64,11 @@
 		</div>
     </nav>
     @yield('body')
+<nav class="navbar navbar-default {{ $footer or 'hidden' }}"> 
+	<div class="container">
+@yield('footer')
+	</div>
+</nav>
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
