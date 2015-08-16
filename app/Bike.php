@@ -14,8 +14,21 @@ class Bike extends Model
 		'password',
 	];
 
+	public function getDates()
+	{
+		return [
+			"created_at",
+			"updated_at",
+		];
+	}
+
 	public function stop()
 	{
 		return $this->belongsTo('App\Stop');
+	}
+
+	public function rent()
+	{
+		return $this->hasMany('App\Rent');
 	}
 }

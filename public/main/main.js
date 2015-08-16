@@ -1,7 +1,27 @@
+function timeAdd(e, a) {
+	var time = $('.' + e).html().match(/\d+/g);
+	for (var i = 0; i < 4; ++i) {
+		time[i] = parseInt(time[i]);
+	}
+	time[1] += time[0] * 24;
+	time[2] += time[1] * 60;
+	time[3] += time[2] * 60;
+	if (a)
+		++time[3];
+	else
+		--time[3]
+	time[2] = parseInt(time[3] / 60);
+	time[3] %= 60;
+	time[1] = parseInt(time[2] / 60);
+	time[2] %= 60;
+	time[0] = parseInt(time[1] / 24);
+	time[1] %= 24;
+	$('.' + e).html(time[0] + '天' + time[1] + '时' + time[2] + '分' + time[3] + '秒');
+}
 $(document).ready(function() {
-	$('#curtain').slideUp(800);
+	$('#curtain').fadeOut(600);
 	$(window).bind('beforeunload', function() {
-		$('#curtain').fadeIn(500);
+		$('#curtain').show();
 	});
 
 	$('.filter').each(function() {
@@ -16,5 +36,16 @@ $(document).ready(function() {
 			});
 		})
 	});
-});
 
+	if ($('.restTime').length) {
+		setInterval(function() {
+			timeAdd('restTime', 0);
+		}, 1000);
+	}
+
+	if ($('.overTime').length) {
+		setInterval(function() {
+			timeAdd('overTime', 1);
+		}, 1000);
+	}
+});

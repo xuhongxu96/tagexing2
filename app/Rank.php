@@ -15,6 +15,15 @@ class Rank extends Model
 		'max_time_special',
 	];
 
+	public function getDates()
+	{
+		return [
+			"created_at",
+			"updated_at",
+		];
+	}
+
+
 	public function scopeFromScore($query, $score)  
 	{
 		return $query->where('min_score', '<=', $score)->orderBy('min_score', 'desc')->take(1);

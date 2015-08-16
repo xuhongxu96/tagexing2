@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\User;
 use Closure;
 
-class Normal
+class Rented
 {
 	protected $user;
 
@@ -22,7 +22,7 @@ class Normal
      */
     public function handle($request, Closure $next)
     {
-        if ($this->user->state != 'normal') {
+        if ($this->user->state != 'rented') {
 			$tip = [
 				'normal' => '待审核',
 				'auth' => '待完善注册信息',

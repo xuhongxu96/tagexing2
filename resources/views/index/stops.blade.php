@@ -16,8 +16,8 @@
 		</div>
 	</form>
 @foreach ($stops as $stop)
-	@if ($stop->bikes->count())
-		<a class="list-group-item" href="{{ action('RentController@getBikes', ['stopId' => $stop->id]) }}">
+	@if ($type == 'return' || $stop->bikes->count())
+		<a class="list-group-item" href="{{ action($action, ['stopId' => $stop->id]) }}">
 			<span class="glyphicon glyphicon-flag text-danger" aria-hidden="true"></span>
 			<span class="filter-text">{{ $stop->name }}车站</span><span class="badge alert-info">{{ $stop->bikes->count() }}辆车</span>
 		</a>
@@ -34,7 +34,7 @@
 @stop
 
 @section ('footer')
-<a class="btn btn-default btn-block navbar-btn" href="{{ action('WechatController@redirect') }}" aria-label="home">
+<a class="btn btn-default btn-block navbar-btn" href="{{ action('IndexController@redirect') }}" aria-label="home">
 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 返回首页
 </a>

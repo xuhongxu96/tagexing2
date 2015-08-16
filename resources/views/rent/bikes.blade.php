@@ -30,7 +30,7 @@
 @stop
 
 @section ('footer')
-<a class="btn btn-default btn-block navbar-btn" href="{{ action('WechatController@redirect') }}" aria-label="home">
+<a class="btn btn-default btn-block navbar-btn" href="{{ action('IndexController@redirect') }}" aria-label="home">
 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 返回首页
 </a>

@@ -35,6 +35,8 @@ class User extends Model implements AuthenticatableContract
 	{
 		return [
 			"free_at",
+			"created_at",
+			"updated_at",
 		];
 	}
 
@@ -43,4 +45,13 @@ class User extends Model implements AuthenticatableContract
 		return (new DateIntervalEnhanced('PT' . $value . 'S'))->recalculate()->format('%y年%m月%d天 %h时%i分');
 	}
 
+	public function rent()
+	{
+		return $this->hasMany('App\Rent');
+	}
+
+	public function scores()
+	{
+		return $this->hasMany('App\Score');
+	}
 }

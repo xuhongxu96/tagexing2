@@ -1,8 +1,8 @@
 body {
-	padding-bottom: 8px;
+	padding-bottom: 60px;
 }
 #curtain {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	right: 0;
 	top: 0;
@@ -56,4 +56,13 @@ a.list-group-item:after {
 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.glyphicon-lg {
+	font-size: 96px;
+}
+
+.lock-pwd {
+	font-size: 64px;
+	line-height: 1em;
 }

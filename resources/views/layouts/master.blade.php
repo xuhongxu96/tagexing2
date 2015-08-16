@@ -36,11 +36,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-				<a class="pull-left btn btn-default navbar-btn visible-xs-block" href="javascript:history.go(-1);" aria-label="back">
+				<a class="pull-left btn btn-default navbar-btn visible-xs-block" href="javascript:history.back();" aria-label="back">
 					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 					返回
 				</a>
-                <a class="navbar-brand" href="{{ url('wechat/redirect') }}">踏鸽行</a>
+                <a class="navbar-brand" href="{{ url('redirect') }}">踏鸽行</a>
 				<p class="navbar-text">@yield('title')</p>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">

@@ -6,7 +6,11 @@
 
 <div class="container">
 	<h3>输入车站码</h3>
+@if ($type == 'rent')
 	{!! Form::open(['action' => ['RentController@postRent', 'stopId' => $stopId, 'bikeId' => $bikeId], 'method' => 'POST'])!!}
+@else
+	{!! Form::open(['action' => ['ReturnController@postReturn', 'stopId' => $stopId], 'method' => 'POST'])!!}
+@endif
 		<div class="form-group form-group-lg">
 			{!! Form::input('tel', 'code', null, ['class' => 'form-control', 'placeholder' => '车站动态码']) !!}
 				<span class="help-block">
@@ -22,7 +26,7 @@
 @stop
 
 @section ('footer')
-<a class="btn btn-default btn-block navbar-btn" href="{{ action('WechatController@redirect') }}" aria-label="home">
+<a class="btn btn-default btn-block navbar-btn" href="{{ action('IndexController@redirect') }}" aria-label="home">
 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 返回首页
 </a>

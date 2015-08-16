@@ -18,9 +18,9 @@ Route::get('/', function () {
 // 相应微信请求
 Route::any('/wechat', 'WechatController@serve');
 
-// 微信网页入口
-Route::any('/wechat/redirect', 'WechatController@redirect');
-Route::get('/wechat/profile', 'WechatController@profile');
+// 网页入口
+Route::any('/redirect', 'IndexController@redirect');
+Route::get('/profile', 'IndexController@profile');
 
 // 用户认证注册入口
 Route::get('register', 'RegisterController@index');
@@ -35,3 +35,7 @@ Route::resource('users', 'UsersController');
 
 // 借车
 Route::controller('rent', 'RentController');
+Route::controller('return', 'ReturnController');
+Route::get('/hi', function(){
+	return view('rent.success')->withPassword('123456');
+});

@@ -139,7 +139,7 @@ class UsersController extends Controller
 				$user->state = 'normal';
 		}
 		$user->update($request->except($except));
-		return redirect()->action('WechatController@redirect');
+		return redirect()->action('IndexController@redirect');
 
     }
 

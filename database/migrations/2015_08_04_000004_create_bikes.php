@@ -16,10 +16,10 @@ class CreateBikes extends Migration
             $table->increments('id');
 			$table->integer('qrcode_id')->unsigned()->unique(); // Unique ID for Generating QR Code
 			$table->string('name', 100)->unique(); // Bike Name
-			$table->enum('state', array('normal', 'broken', 'repairing', 'repaired'))->default('normal'); // Bike State
+			$table->enum('state', array('normal', 'rented', 'broken', 'repairing', 'repaired'))->default('normal'); // Bike State
 
 			// ID of Stop Where Bike stopped
-			$table->integer('stop_id')->unsigned();
+			$table->integer('stop_id')->unsigned()->nullable();
 			$table->foreign('stop_id')->references('id')->on('stops');
 
 			$table->string('password', 10); // Current Password of Bike

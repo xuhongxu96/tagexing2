@@ -11,7 +11,7 @@ class OTPCheck {
 
 	public static function check($authkey, $code)
 	{
-		if (WX_DEBUG == 2) return true;
+		if (app()->environment('debug')) return true;
 		if (function_exists('et_checkpwdz201'))
 		{
 			$t = time();
