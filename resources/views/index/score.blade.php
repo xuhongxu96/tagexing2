@@ -1,14 +1,16 @@
 @extends ('layouts/master', ['footer' => 'navbar-fixed-bottom'])
 
-@section('title', '错误提示')
+@section ('title', '积分明细')
 
-@section('body')
+@section ('body')
 
-<div class="container text-danger">
-	<div class="page-header">
-		<h1>{{ $title }}</h1>
-	</div>
-	<p>{{ $error }}</p>
+<div class="container">
+
+
+<div class="list-group">
+@foreach ($scores as $score)
+	<div class="list-group-item {{ $score->score >= 0 ? 'list-group-item-success' : 'list-group-item-warning' }}"><span class="badge">{{ $score->score }}</span>{{ $score->reason }}</div>
+@endforeach
 </div>
 
 @stop
@@ -28,3 +30,4 @@
 	</a>
 </div>
 @stop
+

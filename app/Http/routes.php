@@ -21,6 +21,7 @@ Route::any('/wechat', 'WechatController@serve');
 // 网页入口
 Route::any('/redirect', 'IndexController@redirect');
 Route::get('/profile', 'IndexController@profile');
+Route::get('/score', 'IndexController@score');
 
 // 用户认证注册入口
 Route::get('register', 'RegisterController@index');

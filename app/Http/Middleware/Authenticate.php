@@ -37,6 +37,7 @@ class Authenticate
 		// 判断权限
 		// TODO: 加入管理员判断
 		$id = $request->route('users');
+		if (!$request->has('users')) $id = $this->user->id;
         if (($id && $this->user->id != $id) && $this->user->auth != 'admin') {
 			return response(view('errors.error', ['title' => '权限不足', 'error' => '您的权限不足！']), 403);
         }

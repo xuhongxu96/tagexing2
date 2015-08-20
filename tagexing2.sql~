@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `stops` (
 INSERT INTO `stops` (`id`, `name`, `code`, `created_at`, `updated_at`) VALUES
 (1, '教八', '123', '2015-08-10 04:03:39', '2015-08-10 04:03:39'),
 (2, '学11', '456', '2015-08-10 04:04:14', '2015-08-10 04:04:14');
-
+-
 -- 表的结构 `bikes`
 --
 

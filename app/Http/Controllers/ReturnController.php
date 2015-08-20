@@ -105,6 +105,7 @@ class ReturnController extends Controller
 			// 更新user
 			$this->user->state = 'normal';
 			$this->user->score = $this->user->score + $scoreDiff;
+			$this->user->total += $returnTime->diffInSeconds();
 			$this->user->save();
 
 			// 成功
@@ -120,5 +121,86 @@ class ReturnController extends Controller
 
 	public function getReport()
 	{
+		$rent = $this->user->rent()->lastRent()->first();
+		if ($rent->created_at->diffInMinutes() < 75)
+		{
+			// 借车5分钟内可以报告借车问题，直接重新借车
+			$lastRent = $rent->bike->rent()->lastRent()->where('id', '!=', $rent->id)->first();
+			return view('return.report')->withPassword($lastRent->password);
+		}
+		else
+		{
+			return view('errors.error')->withTitle('报修错误')->withError('借车后五分钟内才能够报告借车遇到的问题，若您依然无法处理，请直接拨打客服手机：18964087795 18401654098，谢谢合作！');
+		}
+	}
+
+	public function getLockBroken()
+	{
+		$rent = $this->user->rent()->lastRent()->first();
+		$bike = $rent->bike;
+
+		// 修改借车记录的损坏报告
+		$rent->broken_type = 'lock';
+		$rent->broken_desp = '上一次的借车密码仍然无效';
+		$rent->save();
+		
+		// 修改车辆状态
+		$bike->state = 'broken';
+		$bike->stop_id = $rent->stop_id;
+		$bike->save();
+
+		// 修改用户状态
+		$this->user->state = 'normal';
+		$this->user->save();
+	}
+
+	public function getLockRepaired()
+	{
+		$rent = $this->user->rent()->lastRent()->first();
+
+		// 密码还原
+		$lastRent = $rent->bike->rent()->lastRent()->where('id', '!=', $rent->id)->first();
+		$rent->password = $lastRent->password;
+		$rent->save();
+
+		// 上次还车导致损坏
+		$lastReturn = $rent->bike->rent()->lastReturn()->first();
+		$lastReturn->broken_type = 'lock';
+		$lastReturn->broken_desp = '未改密码';
+		$lastReturn->save();
+
+		// 上次用户惩罚
+		$score = new Score();
+		$score->user_id = $lastReturn->user->id;
+		$score->reason = '忘改密码';
+		$score->score = -5;
+		$score->save();
+		$lastReturn->user->score -= 5;
+		$lastReturn->user->save();
+	}
+
+	public function postBikeBroken(Request $request)
+	{
+		$rent = $this->user->rent()->lastRent()->first();
+		$bike = $rent->bike;
+
+		// 修改借车记录的损坏报告
+		$rent->broken_type = 'bike';
+		$rent->broken_desp = $request->input('description');
+		$rent->save();
+		
+		// 修改车辆状态
+		$bike->state = 'broken';
+		$bike->stop_id = $rent->stop_id;
+		$bike->save();
+
+		// 修改用户状态
+		$this->user->state = 'normal';
+		$this->user->save();
+	}
+
+	public function getAccident()
+	{
+		return view('index.info')->withTitle('联系我们')->withInfo('请直接拨打客服手机：18964087795 18401654098，并将车辆正常归还！');
 	}
 }

@@ -66,3 +66,18 @@ a.list-group-item:after {
 	font-size: 64px;
 	line-height: 1em;
 }
+
+.navbar .col-lg-1, .navbar .col-lg-10, .navbar .col-lg-11, .navbar .col-lg-12, .navbar .col-lg-2, .navbar .col-lg-3, .navbar .col-lg-4, .navbar .col-lg-5, .navbar .col-lg-6, .navbar .col-lg-7, .navbar .col-lg-8, .navbar .col-lg-9, .navbar .col-md-1, .navbar .col-md-10, .navbar .col-md-11, .navbar .col-md-12, .navbar .col-md-2, .navbar .col-md-3, .navbar .col-md-4, .navbar .col-md-5, .navbar .col-md-6, .navbar .col-md-7, .navbar .col-md-8, .navbar .col-md-9, .navbar .col-sm-1, .navbar .col-sm-10, .navbar .col-sm-11, .navbar .col-sm-12, .navbar .col-sm-2, .navbar .col-sm-3, .navbar .col-sm-4, .navbar .col-sm-5, .navbar .col-sm-6, .navbar .col-sm-7, .navbar .col-sm-8, .navbar .col-sm-9, .navbar .col-xs-1, .navbar .col-xs-10, .navbar .col-xs-11, .navbar .col-xs-12, .navbar .col-xs-2, .navbar .col-xs-3, .navbar .col-xs-4, .navbar .col-xs-5, .navbar .col-xs-6, .navbar .col-xs-7, .navbar .col-xs-8, .navbar .col-xs-9 {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+.navbar .row {
+  margin-right: -2px;
+  margin-left: -2px;
+}
+
+.navbar .container-fluid {
+  padding-right: 2px;
+  padding-left: 2px;
+}

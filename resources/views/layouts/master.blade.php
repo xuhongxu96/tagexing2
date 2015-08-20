@@ -45,27 +45,32 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
+                    <li><a href="{{ action('UsersController@edit') }}">编辑个人信息</a></li>
+                    <li><a href="#">使用帮助</a></li>
+                    <li><a href="#">我要捐赠 <span class="label label-danger">HOT</span></a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商业合作 <span class="label label-info">NEW</span> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a href="#">转让车辆</a></li>
+                            <li><a href="#">广告投放</a></li>
+                            <li><a href="#">车辆冠名</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">关于我们 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">踏鸽行团队</a></li>
+                            <li><a href="http://xuhongxu.cn">开发者官网</a></li>
+                        </ul>
+                    </li>
+					<li><a href="#">联系我们</a></li>
                 </ul>
 			</div>
 		</div>
     </nav>
     @yield('body')
 <nav class="navbar navbar-default {{ $footer or 'hidden' }}"> 
-	<div class="container">
+	<div class="container-fluid">
 @yield('footer')
 	</div>
 </nav>

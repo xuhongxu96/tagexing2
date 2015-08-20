@@ -87,7 +87,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-		$user = User::findOrFail($id);
+		$user = User::find($id);
+		if (empty($user)) $user = $this->user;
 
 		// 已通过统一身份认证的字段禁止修改
 		$readonly = '';

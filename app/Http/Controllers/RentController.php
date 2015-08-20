@@ -12,7 +12,7 @@ use App\Bike;
 use App\Rank;
 use App\Rent;
 use App\Tools\OTPCheck;
-use Carbon;
+use \Carbon\Carbon;
 use Cache;
 
 class RentController extends Controller
@@ -73,13 +73,13 @@ class RentController extends Controller
 			}
 
 			// 本次借车与上次还车时间间隔应当在20分钟以上
-			$lastRent = $this->user->rent()->lastReturn()->where('broken_type', 'is', 'null')->first();
+			$lastRent = $this->user->rent()->lastReturn()->first();
 			if ($lastRent)
 			{
 				$diffMinutes = $lastRent->created_at->diffInMinutes(Carbon::now());
 				if ($diffMinutes < 20)
 				{
-					return view('errors.error')->withTitle('借车失败')->withError('本次借车与上次还车时间间隔应在20分钟以上（含20分钟），您还需等待 ' . 20 - $diffMinutes . ' 分钟');
+					return view('errors.error')->withTitle('借车失败')->withError('本次借车与上次还车时间间隔应在20分钟以上（含20分钟），您还需等待 ' . (20 - $diffMinutes) . ' 分钟');
 				}
 			}
 

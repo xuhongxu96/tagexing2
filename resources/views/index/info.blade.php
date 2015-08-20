@@ -1,14 +1,14 @@
 @extends ('layouts/master', ['footer' => 'navbar-fixed-bottom'])
 
-@section('title', '错误提示')
+@section('title', '提示')
 
 @section('body')
 
-<div class="container text-danger">
+<div class="container text-info">
 	<div class="page-header">
 		<h1>{{ $title }}</h1>
 	</div>
-	<p>{{ $error }}</p>
+	<p>{{ $info }}</p>
 </div>
 
 @stop

@@ -12,6 +12,7 @@ use Overtrue\Wechat\Server;
 use App\User;
 use App\Rank;
 use App\Stop;
+use App\Score;
 use Cache;
 use DB;
 use \Carbon\Carbon;
@@ -102,7 +103,7 @@ class IndexController extends Controller
 		case 'normal':
 			$rent = $this->user->rent()->lastRent()->first();
 			$return = $this->user->rent()->lastReturn()->first();
-			if ($return->created_at->diffInMinutes() < 5)
+			if ($return && $return->created_at->diffInMinutes() < 5)
 			{
 				$response->with('unlockPassword', $rent->password);
 				$response->with('lockPassword', $return->password);
@@ -127,5 +128,10 @@ class IndexController extends Controller
 						->with('stops', Stop::with('bikes')->get()->sortBy(function($stop){
 							return $stop->bikes->count();
 						}, null, true));
+	}
+
+	public function score()
+	{
+		return view('index.score')->withScores($this->user->scores);
 	}
 }
