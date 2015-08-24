@@ -134,4 +134,5 @@ class IndexController extends Controller
 	{
 		return view('index.score')->withScores($this->user->scores);
 	}
+
 }

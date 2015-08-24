@@ -105,7 +105,7 @@ class ReturnController extends Controller
 			// 更新user
 			$this->user->state = 'normal';
 			$this->user->score = $this->user->score + $scoreDiff;
-			$this->user->total += $returnTime->diffInSeconds();
+			$this->user->total += $rent->created_at->diffInSeconds();
 			$this->user->save();
 
 			// 成功
@@ -126,7 +126,9 @@ class ReturnController extends Controller
 		{
 			// 借车5分钟内可以报告借车问题，直接重新借车
 			$lastRent = $rent->bike->rent()->lastRent()->where('id', '!=', $rent->id)->first();
-			return view('return.report')->withPassword($lastRent->password);
+			$password = null;
+			if ($lastRent) $password = $lastRent->password;
+			return view('return.report')->withPassword($password);
 		}
 		else
 		{
