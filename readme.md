@@ -19,9 +19,9 @@
 
 	Many new functions will be released...
 
-**敬请期待……
+**敬请期待……**
 
-Please look forward...**
+**Please look forward...**
 
 源于 北京师范大学  From  Beijing Normal University
 
