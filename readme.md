@@ -1,5 +1,8 @@
 踏鸽行 校园公共自行车服务平台 2.0 Tagexing Campus Public Bike Service 2.0
 ===========================================================================
+
+![demo](http://xuhongxu.cn/usr/uploads/2015/08/689044344.gif)
+
 1. 代码完全重写
 
 	Rewrite all source code
