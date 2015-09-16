@@ -89,7 +89,7 @@ EOT;
 				$media = new Media(Config::get('wechat.app_id'), Config::get('wechat.secret'));
 				$imageId = $media->image(__DIR__ . '/qr.jpg'); // 上传并返回媒体ID
 
-				return Message::make('image')->media($imageId);
+				return Message::make('image')->media($imageId['media_id']);
 				break;
 			}
 		});
