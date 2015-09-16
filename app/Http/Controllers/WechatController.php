@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Overtrue\Wechat\Server;
+use Overtrue\Wechat\Media;
 
 use App\User;
 use App\Rank;
