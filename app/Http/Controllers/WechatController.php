@@ -84,7 +84,7 @@ EOT;
 EOT;
 					break;
 				case "5":
-					return Message::make("image", asset("images/qr.jpg"));
+					return Message::make("image")->picUrl(asset("images/qr.jpg"));
 					break;
 				}
 			}
