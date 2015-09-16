@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rank extends Model
 {
-	protected $table = "rank";
+	protected $table = 'rank';
 
 	protected $fillable = [
 		'min_score',

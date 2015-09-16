@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Help;
+
 class HelpController extends Controller
 {
-	public function index()
+	public function getIndex()
 	{
-		return view('help.index');
+		return view('help.index')->withHelp(Help::all());
+	}
+	public function getHelp($id)
+	{
+		return view('help.help')->withHelp(Help::find($id));
 	}
 }

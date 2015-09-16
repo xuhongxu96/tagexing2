@@ -45,7 +45,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ action('HelpController@index') }}">使用帮助</a></li>
+                    <li><a href="{{ action('HelpController@getIndex') }}">使用帮助</a></li>
                     <li><a href="#">我要捐赠 <span class="label label-danger">HOT</span></a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商业合作 <span class="label label-info">NEW</span> <span class="caret"></span></a>

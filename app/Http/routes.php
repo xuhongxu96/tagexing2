@@ -24,7 +24,7 @@ Route::get('/profile', 'IndexController@profile');
 Route::get('/score', 'IndexController@score');
 
 // 帮助
-Route::get('/help', 'HelpController@index');
+Route::controller('help', 'HelpController');
 
 // 用户认证注册入口
 Route::get('register', 'RegisterController@index');

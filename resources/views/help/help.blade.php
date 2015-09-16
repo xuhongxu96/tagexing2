@@ -1,27 +1,15 @@
 @extends ('layouts/master', ['footer' => 'navbar-fixed-bottom'])
 
-@section('title', '使用帮助')
+@section('title', $help->page_title)
 
 @section('body')
 
 <div class="container">
-	<img class="img-responsive center-block" src="{{ asset('images/logo.png') }}">
 
-	<div class="list-group">
-@foreach ($help as $item)
+<h3>{{ $help->page_title }}<small>{{ $help->title }}</small></h3>
 
-@if ($item->type == 'caption')
+{!! $help->content !!}
 
-		<div class="list-group-item {{ $item->class }}">{{ $item->title }}</div>
-
-@else
-
-		<a class="list-group-item {{ $item->class }}" href="{{ action('HelpController@getHelp', ['id' => $item->id]) }}">{{ $item->title }}</a>
-
-@endif
-
-@endforeach
-	</div>
 </div>
 
 
