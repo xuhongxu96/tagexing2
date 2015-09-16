@@ -13,6 +13,7 @@ use App\User;
 use App\Rank;
 use App\Stop;
 use Cache;
+use Config;
 use DB;
 
 class WechatController extends Controller
@@ -84,7 +85,10 @@ EOT;
 EOT;
 					break;
 				case "5":
-					return Message::make("image")->picUrl(asset("images/qr.jpg"));
+					$media = new Media(Config::get('wechat.app_id'), Config::get('wechat.secret'));
+					$imageId = $media->image(asset('images/qr.jpg')); // 上传并返回媒体ID
+
+					return Message::make('image')->media($imageId);
 					break;
 				}
 			}
