@@ -48,10 +48,11 @@ EOT;
 
 		$server->on('message', function ($message) {
 			$url = action('IndexController@redirect');
-			switch ($message)
-			{
-			case "1":
-			return <<<EOT
+			if ($message->MsgType == "text") {
+				switch ($message->Content)
+				{
+				case "1":
+				return <<<EOT
 imall，北师大社区慈善商店。www.imall365.org是我们的网站（即将面临改版）。
 欢迎关注我们的微信号”imall_dreammore”。
 【我们立志于】
@@ -66,25 +67,26 @@ imall，北师大社区慈善商店。www.imall365.org是我们的网站（即�
 4.  结识一群志同道合的优秀伙伴、前辈；
 5.  最重要的，imall会助你成长，让你的大学与众不同。
 EOT;
-				break;
-			case "2":
-			return <<<EOT
+					break;
+				case "2":
+				return <<<EOT
 <a href="https://jinshuju.net/f/z0GASP">imall报名</a>
 EOT;
-				break;
-			case "3":
-			return <<<EOT
+					break;
+				case "3":
+				return <<<EOT
 <a href="https://jinshuju.net/f/5uQ0Nn">imall调研</a>
 EOT;
-				break;
-			case "4":
-			return <<<EOT
+					break;
+				case "4":
+				return <<<EOT
 <a href="https://jinshuju.net/f/tKROez">踏鸽行报名</a>
 EOT;
-				break;
-			case "5":
-				return Message::make("image", asset("images/qr.jpg"));
-				break;
+					break;
+				case "5":
+					return Message::make("image", asset("images/qr.jpg"));
+					break;
+				}
 			}
 		});
 
