@@ -10,7 +10,7 @@ body {
 	padding-top: 50%;
 	z-index: 999999;
 	background: white;
-
+	pointer-events: none;
 	color: black;
 	text-align: center;
 }

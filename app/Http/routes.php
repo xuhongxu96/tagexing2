@@ -11,9 +11,17 @@
 |
 */
 
+/*
+ * 主页
+ */
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*
+ * 微信
+ */
 
 // 相应微信请求
 Route::any('/wechat', 'WechatController@serve');
@@ -43,3 +51,7 @@ Route::controller('return', 'ReturnController');
 Route::get('/hi', function(){
 	return view('rent.success')->withPassword('123456');
 });
+
+/*
+ * 后台
+ */
