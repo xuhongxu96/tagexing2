@@ -16,6 +16,7 @@ class Help extends Migration
 			$table->increments('id');
 
 			$table->enum('type', array('caption', 'link'));
+			$table->integer('item_order')->default(0);
 			$table->string('title', 200);
 			$table->string('class', 500);
 

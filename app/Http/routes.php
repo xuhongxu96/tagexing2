@@ -31,8 +31,9 @@ Route::any('/redirect', 'IndexController@redirect');
 Route::get('/profile', 'IndexController@profile');
 Route::get('/score', 'IndexController@score');
 
+Route::post('/upload', 'UploadController@upload');
 // 帮助
-Route::controller('help', 'HelpController');
+Route::resource('help', 'HelpController');
 
 // 用户认证注册入口
 Route::get('register', 'RegisterController@index');
@@ -55,3 +56,5 @@ Route::get('/hi', function(){
 /*
  * 后台
  */
+Route::controller('admin', 'AdminController');
+Route::resource('rank', 'RankController');

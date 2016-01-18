@@ -145,7 +145,7 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+		'Vinelab\Editor\EditorServiceProvider',
 
     ],
 
@@ -198,5 +198,6 @@ return [
 		'Html'		=> Illuminate\Html\HtmlFacade::class,
 
     ],
+
 
 ];

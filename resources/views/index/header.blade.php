@@ -7,7 +7,7 @@
 @endif
 
 <!-- Header -->
-	<h3>踏鸽行 公共自行车 <span class="label label-primary">2.0</span></h3>
+	<h3>踏鸽行 公共单车 <span class="label label-primary">2.0</span></h3>
 	<p>由 <a href="#imall" data-toggle="collapse" aria-expanded="false" aria-controls="imall">imall公益</a> 驱动</p>
 
 <!-- imall简介 -->

@@ -27,15 +27,6 @@ class UsersController extends Controller
 		$this->user = $user;
 	}
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * 显示注册用户的表单
@@ -72,7 +63,7 @@ class UsersController extends Controller
     public function show($id)
     {
 		// TODO: 管理员查看用户信息
-		if ($this->user->id == $id || $this->user->auth == 'admin')
+		if ($this->user->id == $id) 
 		{
 			$response = view('users.show');
 		}
@@ -142,16 +133,5 @@ class UsersController extends Controller
 		$user->update($request->except($except));
 		return redirect()->action('IndexController@redirect');
 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

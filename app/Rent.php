@@ -40,4 +40,5 @@ class Rent extends Model
 	{
 		return $query->where('type', '=', 'return')->orderBy('id', 'desc');
 	}
+
 }

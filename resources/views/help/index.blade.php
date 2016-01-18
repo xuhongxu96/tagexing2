@@ -16,7 +16,7 @@
 
 @else
 
-		<a class="list-group-item {{ $item->class }}" href="{{ action('HelpController@getHelp', ['id' => $item->id]) }}">{{ $item->title }}</a>
+		<a class="list-group-item {{ $item->class }}" href="{{ action('HelpController@show', ['id' => $item->id]) }}">{{ $item->title }}</a>
 
 @endif
 

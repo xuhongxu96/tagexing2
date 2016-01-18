@@ -49,3 +49,10 @@ $(document).ready(function() {
 		}, 1000);
 	}
 });
+
+function rentInfoSubmit(id, csrf, action) {
+	var v = document.getElementById("rentComment" + id).value;
+	$.post(action, {'comment': v, '_token': csrf}, function (ret) {
+		alert(ret);
+	});
+}

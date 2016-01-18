@@ -31,6 +31,7 @@ class RentController extends Controller
 		$this->user = $user;
 	}
 
+
 	public function getStops()
 	{
 		return view('index.stops')->withType('rent')

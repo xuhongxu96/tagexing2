@@ -13,6 +13,7 @@ class Help extends Model
 		'title',
 		'class',
 		'page_title',
+		'item_order',
 		'content',
 	];
 }
