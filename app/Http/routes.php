@@ -58,3 +58,9 @@ Route::get('/hi', function(){
  */
 Route::controller('admin', 'AdminController');
 Route::resource('rank', 'RankController');
+Route::resource('stops', 'StopController');
+Route::resource('bikes', 'BikeController');
+Route::resource('useradmin', 'UserAdminController');
+Route::get('/userauth', 'UserAdminController@auth');
+Route::get('/user/admin/{id}', 'UserAdminController@admin');
+Route::put('/user/admin/{id}', 'UserAdminController@updateAdmin');

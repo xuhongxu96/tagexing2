@@ -40,15 +40,9 @@ class RankController extends Controller
 		return view('rank.create')->withUser($user);
 	}
 
-	public function show($id)
-	{
-		return view('rank.rank')->withRank(Rank::find($id));
-	}
-
-
 	public function edit($id, User $user)
 	{
-		if (!($user->auth & \Config::get('admin.adminLevel'))) return response(view('errors.error', ['title' => '权限不足', 'error' => '您没有管理帮助页面的权限！']), 403);
+		if (!($user->auth & \Config::get('admin.adminLevel'))) return response(view('errors.error', ['title' => '权限不足', 'error' => '您没有管理等级的权限！']), 403);
 		return view('rank.edit')
 			->withUser($user)
 			->withRank(Rank::find($id));
@@ -57,11 +51,11 @@ class RankController extends Controller
 	public function update(RankRequest $request, $id, User $user)
 	{
 		$rank = Rank::findOrFail($id);
-		$rank->fill($request->all());
-		$rank->save();
         $log = new Log();
         $log->user_id = $user->id;
-        $log->log = "编辑等级" . $id;
+		$log->log = "编辑等级" . print_r($rank->toArray(), true);
+		$rank->fill($request->all());
+		$rank->save();
         $log->save();
 		return redirect()->action('RankController@index');
 	}
@@ -79,8 +73,13 @@ class RankController extends Controller
 		return redirect()->action('RankController@index');
 	}
 
-	public function destroy($id)
+	public function destroy($id, User $user)
 	{
+		$rank = Rank::find($id);
+        $log = new Log();
+        $log->user_id = $user->id;
+		$log->log = "删除等级" . print_r($rank->toArray(), true);
+        $log->save();
 		Rank::destroy($id);
 		return redirect()->action('RankController@index');
 	}

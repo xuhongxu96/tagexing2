@@ -5,3 +5,4 @@ Homestead.yaml
 .env
 *.swp
 /public/Tagexing
+.DS_Store

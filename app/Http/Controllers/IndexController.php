@@ -66,10 +66,10 @@ class IndexController extends Controller
 		// 查看个人信息
 		$response = view('index.profile')->with('user', $this->user);
 		// 获取系统公告
-		Cache::forever('tip', [
+/*		Cache::forever('tip', [
 			'type' => 'info',
 			'message' => '踏鸽行 2.0 正在研发中……',
-		]);
+		]);*/
 		// 系统公告每个会话提示3次
 		$tipShown = session('tip_shown', 0);
 		if ($tipShown < 3)

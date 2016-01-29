@@ -62,10 +62,10 @@
 							<li><a href="{{ action('AdminController@getHelp') }}">帮助页面</a></li>
 @endif
 @if ($user->auth & Config::get("admin.adminSetting", 2))
-							<li><a href="#">系统设置</a></li>
+							<li><a href="{{ action('AdminController@getSetting') }}">系统设置</a></li>
 @endif
 @if ($user->auth & Config::get("admin.adminLog", 4))
-							<li><a href="#">后台日志</a></li>
+							<li><a href="{{ action('AdminController@getLog') }}">后台日志</a></li>
 @endif
                         </ul>
                     </li>
@@ -76,16 +76,13 @@
 					<li><a href="{{ action('RankController@index') }}">等级管理</a></li>
 @endif
 @if ($user->auth & Config::get("admin.adminStop", 32))
-					<li><a href="#">车站管理</a></li>
+					<li><a href="{{ action('StopController@index') }}">车站管理</a></li>
 @endif
 @if ($user->auth & Config::get("admin.adminBike", 64))
-					<li><a href="#">单车管理</a></li>
+					<li><a href="{{ action('BikeController@index') }}">单车管理</a></li>
 @endif
-@if ($user->auth & Config::get("admin.adminAuth", 128))
-					<li><a href="#">用户认证</a></li>
-@endif
-@if ($user->auth & Config::get("admin.adminUser", 256))
-					<li><a href="#">用户管理</a></li>
+@if (($user->auth & Config::get("admin.adminAuth", 128)) || ($user->auth & Config::get('admin.adminUser', 256)))
+					<li><a href="{{ action('UserAdminController@index') }}">用户管理</a></li>
 @endif
                 </ul>
 			</div>

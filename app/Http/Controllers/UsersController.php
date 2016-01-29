@@ -134,4 +134,9 @@ class UsersController extends Controller
 		return redirect()->action('IndexController@redirect');
 
     }
+
+	public function destroy($id) 
+	{
+		User::destroy($id);
+	}
 }

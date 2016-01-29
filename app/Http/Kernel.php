@@ -32,5 +32,6 @@ class Kernel extends HttpKernel
 		'normal' => \App\Http\Middleware\Normal::class,
 		'rented' => \App\Http\Middleware\Rented::class,
 		'admin' => \App\Http\Middleware\Admin::class,
+		'adminuser' => \App\Http\Middleware\AdminUser::class,
     ];
 }

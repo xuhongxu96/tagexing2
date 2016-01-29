@@ -42,12 +42,12 @@ class HelpController extends Controller
 	public function update(HelpRequest $helpRequest, $id, User $user)
 	{
 		$help = Help::findOrFail($id);
+        $log = new Log();
+        $log->user_id = $user->id;
+		$log->log = "编辑帮助" . print_r($help->toArray(), true);
 		$help->fill($helpRequest->all());
 		$help->content = $helpRequest->input(\Editor::input());
 		$help->save();
-        $log = new Log();
-        $log->user_id = $user->id;
-        $log->log = "编辑帮助" . $id;
         $log->save();
 		return redirect()->action('AdminController@getHelp');
 	}
@@ -66,8 +66,13 @@ class HelpController extends Controller
 		return redirect()->action('AdminController@getHelp');
 	}
 
-	public function destroy($id)
+	public function destroy($id, User $user)
 	{
+		$help = Help::find($id);
+        $log = new Log();
+        $log->user_id = $user->id;
+		$log->log = "删除帮助" . print_r($help->toArray(), true);
+        $log->save();
 		Help::destroy($id);
 		return redirect()->action('AdminController@getHelp');
 	}

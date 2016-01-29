@@ -8,7 +8,7 @@
 @if (isset($user->message) && $user->message)
 		<p class="alert alert-danger alert-dismissable" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			{{ $user->message }}
+		{!! nl2br(e($user->message)) !!}
 		</p>
 @endif
 @if ($tip)
