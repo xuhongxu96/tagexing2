@@ -39,7 +39,7 @@ EOT;
         $menu = $wechat->menu;
         $buttons = [
             [
-                "type" => "click",
+                "type" => "view",
                 "name" => "踏鸽行",
                 "url"  => action('IndexController@redirect')
             ],
