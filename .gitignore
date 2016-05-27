@@ -6,3 +6,4 @@ Homestead.yaml
 *.swp
 /public/Tagexing
 .DS_Store
+/public/phpmyadmin
