@@ -9,6 +9,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\OldUser;
 use App\Http\Middleware\UserAuth;
 
 class UsersController extends Controller
@@ -49,6 +50,7 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->user->score = max(60, $OldUser::where('openid', $this->user->openid)->score);
 		$this->user->fill($request->all());
 		$this->user->save();
 		return redirect()->action('RegisterController@index');
