@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Overtrue\Wechat\Application;
-use Overtrue\Wechat\Server;
-use Overtrue\Wechat\Media;
-use Overtrue\Wechat\Message;
 
 use App\User;
 use App\Rank;
@@ -29,23 +25,18 @@ class WechatController extends Controller
 	 *
 	 * @return string
 	 */
-	public function serve(Server $server, Application $app) 
+	public function serve() 
 	{
+        $wechat = app('wechat');
+        $server = $wechat->server;
 
-		$server->on('event', 'subscribe', function ($event) {
-			$url = action('IndexController@redirect');
+	    $wechat->server->setMessageHandler(function($message){
 			return <<<EOT
 欢迎关注踏鸽行公共自行车！
 EOT;
-		});
+        });
 
-		$server->on('message', 'text', function ($message) {
-			$url = action('IndexController@redirect');
-		//	switch ($message->Content)
-            return "HI";
-		});
-
-        $menu = $app->menu;
+        $menu = $wechat->menu;
         $buttons = [
             [
                 "type" => "click",
