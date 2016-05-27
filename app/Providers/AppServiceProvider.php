@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
 		$this->app->singleton('App\User', function ($app) 
 		{
 			// Session中获取当前认证用户
-			$authUser = session('wechat.oauth_user');
+			$authUser = session('logged_user');
 
 			if (app()->environment('debug')) 
 			{
@@ -32,13 +32,15 @@ class AppServiceProvider extends ServiceProvider
 
 			if (empty($authUser)) 
 			{
-                $user = $app->oauth->user();
-                if (empty($user)) {
-                    $response = $app->oauth->scopes(['snsapi_base'])->redirect();
-                    $response->send();
-                }
+				$oauth = app('wechat')->oauth;
+				try{
+					$authUser = $oauth->user();
+				}catch(\InvalidArgumentException $e) {
+				    $response = $oauth->scopes(['snsapi_base'])->redirect();
+					$response->send();
+				}
 				// 保存Session
-                $authUser = $app->oauth->user();
+				//$authUser = $oauth->user();
 				session(['logged_user' => $authUser]);
 			}
 
