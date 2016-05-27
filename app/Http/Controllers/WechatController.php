@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Overtrue\Wechat\Application;
 use Overtrue\Wechat\Server;
 use Overtrue\Wechat\Media;
 use Overtrue\Wechat\Message;
@@ -41,6 +42,7 @@ EOT;
 		$server->on('message', 'text', function ($message) {
 			$url = action('IndexController@redirect');
 		//	switch ($message->Content)
+            return "HI";
 		});
 
         $menu = $app->menu;
