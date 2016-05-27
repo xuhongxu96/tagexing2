@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
 		$this->app->singleton('App\User', function ($app) 
 		{
 			// Session中获取当前认证用户
-			$authUser = session('logged_user');
+			$authUser = session('wechat.oauth_user');
 
 			if (app()->environment('debug')) 
 			{
@@ -32,16 +32,18 @@ class AppServiceProvider extends ServiceProvider
 
 			if (empty($authUser)) 
 			{
-				// 获取微信认证接口
-				$auth =\App::make('Overtrue\Wechat\Auth');
-				// 若Session为空，则进行微信认证
-				$authUser = $auth->authorize(null, 'snsapi_base'); 
+                $user = $app->oauth->user();
+                if (empty($user)) {
+                    $response = $app->oauth->scopes(['snsapi_base'])->redirect();
+                    $response->send();
+                }
 				// 保存Session
+                $authUser = $app->oauth->user();
 				session(['logged_user' => $authUser]);
 			}
 
 			// 根据认证得到的用户openid获取用户信息，若不存在则实例化新用户
-			$user = User::firstOrNew(['openid' => $authUser->openid]);
+			$user = User::firstOrNew(['openid' => $authUser->id]);
 			if ($user->state == 'normal' && $user->score <= 0)
 			{
 				$user->state = 'disabled';
