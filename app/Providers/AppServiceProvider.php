@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
 			// Session中获取当前认证用户
 			$authUser = session('logged_user');
 
-			if (app()->environment('debug')) 
+			if (true || app()->environment('debug')) 
 			{
 				$authUser = (object)array(
 					'openid' => 'Hello, World!'
