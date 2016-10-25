@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
 					$authUser = $oauth->user();
 				}catch(\InvalidArgumentException $e) {
 				    $response = $oauth->scopes(['snsapi_base'])->redirect();
-					$response->send();
+				    return $response;
 				}
 				// 保存Session
 				//$authUser = $oauth->user();
