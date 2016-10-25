@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
 			if (true || app()->environment('debug')) 
 			{
 				$authUser = (object)array(
-					'openid' => 'Hello, World!'
+					'id' => 'Hello, World!'
 				);
 			}
 
