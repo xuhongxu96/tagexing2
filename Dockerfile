@@ -47,3 +47,5 @@ COPY . /app
 RUN composer install \
     && chown -R www-data:www-data /app \
     && chmod -R 0777 /app/storage
+
+RUN php artisan migrate
